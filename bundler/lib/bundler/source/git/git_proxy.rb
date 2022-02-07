@@ -163,6 +163,7 @@ module Bundler
 
         def git(*command, dir: nil)
           command_with_no_credentials = check_allowed(command)
+          Bundler.ui.warn(command_with_no_credentials.inspect)
 
           out, status = SharedHelpers.with_clean_git_env do
             capture_and_filter_stderr(*capture3_args_for(command, dir))

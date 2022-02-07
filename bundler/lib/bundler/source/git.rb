@@ -210,6 +210,7 @@ module Bundler
       def load_spec_files
         super
       rescue PathError => e
+        raise GitError, [e.message, expanded_path].inspect
         Bundler.ui.trace e
         raise GitError, "#{self} is not yet checked out. Run `bundle install` first."
       end
